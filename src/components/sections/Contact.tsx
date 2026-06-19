@@ -65,14 +65,18 @@ export default function Contact() {
                     ["email", "Email"],
                   ] as const
                 ).map(([field, label]) => (
-                  <div key={field}>
+                  <motion.div
+                    key={field}
+                    whileFocus={{ scale: 1.02 }}
+                    transition={{ duration: 0.2 }}
+                  >
                     <label
                       htmlFor={field}
                       className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-brand-700/70"
                     >
                       {label}
                     </label>
-                    <input
+                    <motion.input
                       id={field}
                       type={
                         field === "email"
@@ -89,20 +93,21 @@ export default function Contact() {
                           [field]: e.target.value,
                         }))
                       }
-                      className="w-full rounded-xl border border-brand-100 bg-white px-4 py-3 text-sm text-surface-800 transition-all focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
+                      whileFocus={{ scale: 1.02 }}
+                      className="w-full rounded-xl border border-brand-200/80 bg-white/80 px-4 py-3 text-sm text-surface-800 transition-all duration-300 focus:border-brand-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 shadow-sm hover:border-brand-300"
                     />
-                  </div>
+                  </motion.div>
                 ))}
               </div>
 
-              <div>
+              <motion.div whileFocus={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
                 <label
                   htmlFor="message"
                   className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-brand-700/70"
                 >
                   Message
                 </label>
-                <textarea
+                <motion.textarea
                   id="message"
                   required
                   rows={5}
@@ -113,14 +118,17 @@ export default function Contact() {
                       message: e.target.value,
                     }))
                   }
-                  className="w-full resize-none rounded-xl border border-brand-100 bg-white px-4 py-3 text-sm text-surface-800 transition-all focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
+                  whileFocus={{ scale: 1.02 }}
+                  className="w-full resize-none rounded-xl border border-brand-200/80 bg-white/80 px-4 py-3 text-sm text-surface-800 transition-all duration-300 focus:border-brand-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 shadow-sm hover:border-brand-300"
                   placeholder="Tell us about your project..."
                 />
-              </div>
+              </motion.div>
 
-              <button
+              <motion.button
                 type="submit"
-                className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-600 to-brand-500 px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-brand-600/25 transition-all hover:shadow-xl hover:shadow-brand-600/35"
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-600 to-brand-500 px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-brand-600/25 transition-all duration-300 hover:from-brand-700 hover:to-brand-600 hover:shadow-xl hover:shadow-brand-600/40"
               >
                 {submitted ? (
                   <>
@@ -133,13 +141,17 @@ export default function Contact() {
                     <Send size={16} className="transition-transform group-hover:translate-x-0.5" />
                   </>
                 )}
-              </button>
+              </motion.button>
             </form>
           </Reveal>
         </div>
 
         <Reveal delay={0.2} scale direction="right">
-          <div className="rounded-3xl border border-brand-100 bg-white p-8 shadow-lg shadow-brand-600/5 lg:p-10">
+          <motion.div
+            whileHover={{ y: -4 }}
+            transition={{ duration: 0.3 }}
+            className="rounded-3xl border border-brand-100 bg-white p-8 shadow-xl shadow-brand-600/10 lg:p-10"
+          >
             <h3 className="font-display text-2xl font-bold text-surface-900">
               Common Questions
             </h3>
@@ -157,24 +169,33 @@ export default function Contact() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.06 }}
-                    className="overflow-hidden rounded-2xl border border-brand-50 bg-brand-50/50"
+                    className={clsx(
+                      "overflow-hidden rounded-2xl border transition-all duration-300",
+                      isOpen
+                        ? "border-brand-300 bg-brand-50/80 shadow-md"
+                        : "border-brand-100 bg-white hover:border-brand-200 hover:shadow-md"
+                    )}
                   >
-                    <button
+                    <motion.button
                       type="button"
                       onClick={() => setOpenFaq(isOpen ? null : item.id)}
-                      className="flex w-full items-center justify-between px-5 py-4 text-left transition-colors hover:bg-brand-50"
+                      whileHover={{ x: 4 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="flex w-full items-center justify-between px-5 py-4 text-left transition-colors"
                     >
                       <span className="pr-4 text-sm font-semibold text-surface-800">
                         {item.question}
                       </span>
-                      <ChevronDown
-                        size={18}
-                        className={clsx(
-                          "shrink-0 text-brand-600 transition-transform duration-300",
-                          isOpen && "rotate-180"
-                        )}
-                      />
-                    </button>
+                      <motion.div
+                        animate={{ rotate: isOpen ? 180 : 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <ChevronDown
+                          size={18}
+                          className="shrink-0 text-brand-600"
+                        />
+                      </motion.div>
+                    </motion.button>
                     <AnimatePresence>
                       {isOpen && (
                         <motion.div
@@ -193,7 +214,7 @@ export default function Contact() {
                 );
               })}
             </div>
-          </div>
+          </motion.div>
         </Reveal>
       </div>
     </SectionWrapper>

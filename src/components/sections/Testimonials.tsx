@@ -71,35 +71,41 @@ export default function Testimonials() {
           </AnimatePresence>
 
           <div className="mt-12 flex items-center justify-center gap-4">
-            <button
+            <motion.button
               type="button"
               onClick={prev}
               aria-label="Previous testimonial"
-              className="rounded-full border border-white/20 p-2.5 text-white transition-colors hover:bg-white/10"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="rounded-full border border-white/20 bg-white/10 p-2.5 text-white backdrop-blur-sm transition-colors hover:bg-white/20 shadow-lg"
             >
               <ChevronLeft size={18} />
-            </button>
+            </motion.button>
             <div className="flex gap-2">
               {testimonials.map((_, i) => (
-                <button
+                <motion.button
                   key={i}
                   type="button"
                   onClick={() => setCurrent(i)}
                   aria-label={`Testimonial ${i + 1}`}
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
                   className={`h-2 rounded-full transition-all duration-300 ${
-                    i === current ? "w-8 bg-white" : "w-2 bg-white/30 hover:bg-white/50"
+                    i === current ? "w-8 bg-white shadow-lg" : "w-2 bg-white/30 hover:bg-white/50"
                   }`}
                 />
               ))}
             </div>
-            <button
+            <motion.button
               type="button"
               onClick={next}
               aria-label="Next testimonial"
-              className="rounded-full border border-white/20 p-2.5 text-white transition-colors hover:bg-white/10"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="rounded-full border border-white/20 bg-white/10 p-2.5 text-white backdrop-blur-sm transition-colors hover:bg-white/20 shadow-lg"
             >
               <ChevronRight size={18} />
-            </button>
+            </motion.button>
           </div>
         </div>
       </div>

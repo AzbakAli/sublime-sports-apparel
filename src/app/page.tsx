@@ -1,6 +1,9 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ScrollProgress from "@/components/ui/ScrollProgress";
+import WelcomeModal from "@/components/ui/WelcomeModal";
+import BackToTop from "@/components/ui/BackToTop";
+import PageLoader from "@/components/ui/PageLoader";
 import HeroSlider from "@/components/sections/HeroSlider";
 import Marquee from "@/components/sections/Marquee";
 import StatsBar from "@/components/sections/StatsBar";
@@ -14,6 +17,8 @@ import Contact from "@/components/sections/Contact";
 export default function HomePage() {
   return (
     <>
+      <PageLoader />
+      <WelcomeModal />
       <ScrollProgress />
       <Header />
       <main>
@@ -28,6 +33,7 @@ export default function HomePage() {
         <Contact />
       </main>
       <Footer />
+      <BackToTop />
     </>
   );
 }

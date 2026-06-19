@@ -82,9 +82,10 @@ export default function About() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 + i * 0.08 }}
-                className="flex items-start gap-3 rounded-xl bg-white/70 p-3 backdrop-blur-sm"
+                whileHover={{ scale: 1.02, x: 4 }}
+                className="flex items-start gap-3 rounded-xl bg-white/70 p-3 backdrop-blur-sm border border-brand-100/50 shadow-sm hover:shadow-md transition-all duration-300"
               >
-                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-600">
+                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-600 shadow-md shadow-brand-600/20">
                   <Check size={11} className="text-white" strokeWidth={3} />
                 </span>
                 <span className="text-sm text-surface-700">{item}</span>
@@ -94,7 +95,7 @@ export default function About() {
 
           <Link
             href="#services"
-            className="group mt-10 inline-flex items-center gap-2 rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-600/25 transition-all hover:bg-brand-700"
+            className="group mt-10 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-600 to-brand-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-600/25 transition-all duration-300 hover:from-brand-700 hover:to-brand-600 hover:shadow-xl hover:shadow-brand-600/40 hover:-translate-y-0.5"
           >
             Explore our services
             <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

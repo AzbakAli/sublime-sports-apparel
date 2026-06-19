@@ -110,13 +110,18 @@ export default function Services() {
       </div>
 
       <Reveal className="mt-16 text-center">
-        <Link
-          href="#contact"
-          className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-600 to-brand-500 px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-brand-600/30 transition-all hover:shadow-xl hover:shadow-brand-600/40"
+        <motion.div
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
         >
-          Request a Custom Quote
-          <ArrowUpRight size={16} />
-        </Link>
+          <Link
+            href="#contact"
+            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-600 to-brand-500 px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-brand-600/30 transition-all duration-300 hover:from-brand-700 hover:to-brand-600 hover:shadow-xl hover:shadow-brand-600/40 hover:-translate-y-0.5"
+          >
+            Request a Custom Quote
+            <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
+        </motion.div>
       </Reveal>
     </SectionWrapper>
   );
